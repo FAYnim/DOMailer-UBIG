@@ -1,0 +1,695 @@
+/* ==========================================================================
+   DOMailer - Email Workspace Client Stylesheet
+   Pure CSS (Vanilla CSS) - Gmail-style Modern Aesthetic
+   ========================================================================== */
+
+/* ==========================================================================
+   CSS VARIABLES & THEME CONFIGURATION
+   ========================================================================== */
+:root {
+  /* Primary Colors (Blue Gmail-style Accent) */
+  --primary-color: #007bff;
+  --primary-hover: #0069d9;
+  --primary-light: #e8f0fe;
+  --primary-border: #007bff;
+
+  /* Danger / Alert Colors */
+  --danger-color: #dc3545;
+  --danger-hover: #c82333;
+  --danger-light: #fee2e2;
+  --danger-border: #fca5a5;
+
+  /* Star Colors */
+  --star-active: #f59e0b;
+  --star-inactive: #cbd5e1;
+
+  /* Neutral Palette */
+  --bg-body: #f4f6f8;
+  --bg-card: #ffffff;
+  --bg-toolbar: #f8fafc;
+  --bg-bulk: #f1f5f9;
+  --bg-row-hover: #f8fafc;
+  --bg-row-selected: #eff6ff;
+  --bg-row-read: #fafbfc;
+
+  /* Borders */
+  --border-color: #e2e8f0;
+  --border-subtle: #edf2f7;
+
+  /* Typography */
+  --text-main: #1e293b;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --text-light: #94a3b8;
+
+  /* Typography Font */
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  /* Spacing & Radii */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.05);
+  --shadow-modal: 0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* ==========================================================================
+   RESET & BASE STYLES
+   ========================================================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg-body);
+  color: var(--text-main);
+  line-height: 1.5;
+  padding: 30px 15px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Helper Utility */
+.hidden {
+  display: none !important;
+}
+
+/* ==========================================================================
+   APP CONTAINER / CARD
+   ========================================================================== */
+.app-container {
+  max-width: 1080px;
+  margin: 0 auto;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 24px;
+}
+
+/* ==========================================================================
+   HEADER & STATS
+   ========================================================================== */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 4px;
+}
+
+.app-header .logo {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: -0.5px;
+}
+
+.app-header .stats-badge {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.app-header .stats-badge span {
+  color: var(--text-main);
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   TOOLBAR (Search, Filter, Compose)
+   ========================================================================== */
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.search-wrapper {
+  flex: 1;
+  min-width: 250px;
+  max-width: 380px;
+}
+
+#search-input {
+  width: 100%;
+  padding: 8px 14px;
+  font-size: 13.5px;
+  font-family: inherit;
+  color: var(--text-main);
+  background-color: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: var(--radius-md);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#search-input::placeholder {
+  color: var(--text-light);
+}
+
+#search-input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+}
+
+.toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.filter-group {
+  display: inline-flex;
+  gap: 6px;
+}
+
+/* Filter Buttons */
+.filter-btn {
+  padding: 6px 14px;
+  font-size: 13.5px;
+  font-weight: 500;
+  font-family: inherit;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--primary-border);
+  background-color: #ffffff;
+  color: var(--primary-color);
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.filter-btn:hover {
+  background-color: var(--primary-light);
+}
+
+.filter-btn.active {
+  background-color: var(--primary-color);
+  color: #ffffff;
+  border-color: var(--primary-color);
+}
+
+/* Compose Button */
+#compose-btn {
+  padding: 6px 16px;
+  font-size: 13.5px;
+  font-weight: 500;
+  font-family: inherit;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--primary-border);
+  background-color: #ffffff;
+  color: var(--primary-color);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.18s ease;
+}
+
+#compose-btn:hover {
+  background-color: var(--primary-color);
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   BULK ACTION BAR
+   ========================================================================== */
+#bulk-action-bar {
+  background-color: var(--bg-bulk);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 9px 16px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.bulk-selected-info {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.bulk-actions-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 4px;
+}
+
+.bulk-btn {
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease, opacity 0.15s ease;
+}
+
+#mark-read-btn {
+  background-color: var(--primary-color);
+  color: #ffffff;
+}
+
+#mark-read-btn:hover {
+  background-color: var(--primary-hover);
+}
+
+#delete-selected-btn {
+  background-color: var(--danger-color);
+  color: #ffffff;
+}
+
+#delete-selected-btn:hover {
+  background-color: var(--danger-hover);
+}
+
+/* ==========================================================================
+   EMAIL TABLE & CONTAINER
+   ========================================================================== */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.email-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.email-table th {
+  background-color: #ffffff;
+  color: var(--text-secondary);
+  font-size: 13.5px;
+  font-weight: 600;
+  padding: 12px 10px;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1.5px solid var(--border-color);
+  white-space: nowrap;
+}
+
+/* Column Width Alignments */
+.th-checkbox, .col-checkbox {
+  width: 36px;
+  text-align: center;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+.th-star, .col-star {
+  width: 36px;
+  text-align: center;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+.th-sender, .sender {
+  width: 170px;
+  min-width: 150px;
+  padding-right: 12px;
+}
+
+.th-subject, .subject-content {
+  min-width: 280px;
+}
+
+.th-date, .date {
+  width: 90px;
+  white-space: nowrap;
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.th-action, .col-action {
+  width: 70px;
+  text-align: center;
+}
+
+/* Checkbox Styling */
+.select-all-checkbox,
+.row-checkbox {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  accent-color: var(--primary-color);
+  vertical-align: middle;
+}
+
+/* ==========================================================================
+   EMAIL ROW VISUAL STATES
+   ========================================================================== */
+.email-row {
+  border-bottom: 1px solid var(--border-color);
+  transition: background-color 0.15s ease;
+}
+
+.email-row td {
+  padding: 12px 10px;
+  vertical-align: middle;
+  font-size: 13.5px;
+}
+
+/* Hover State */
+.email-row:hover {
+  background-color: var(--bg-row-hover);
+}
+
+/* Selected Row Highlight (via class or :has selector) */
+.email-row.selected,
+.email-row:has(.row-checkbox:checked) {
+  background-color: var(--bg-row-selected) !important;
+}
+
+/* Star Icon */
+.star-icon {
+  display: inline-block;
+  font-size: 16px;
+  color: var(--star-inactive);
+  cursor: pointer;
+  user-select: none;
+  line-height: 1;
+  transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.star-icon:hover {
+  transform: scale(1.15);
+}
+
+/* Star Active State: supported via attribute [data-starred="true"] or class .active/.starred */
+.email-row[data-starred="true"] .star-icon,
+.star-icon.active,
+.star-icon.starred {
+  color: var(--star-active);
+}
+
+.email-row[data-starred="false"] .star-icon {
+  color: var(--star-inactive);
+}
+
+/* UNREAD State: supported via [data-read="false"] or class .unread */
+.email-row[data-read="false"],
+.email-row.unread {
+  background-color: #ffffff;
+}
+
+.email-row[data-read="false"] .sender,
+.email-row.unread .sender {
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.email-row[data-read="false"] .subject,
+.email-row.unread .subject {
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.email-row[data-read="false"] .date,
+.email-row.unread .date {
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+/* READ State: supported via [data-read="true"] or class .read */
+.email-row[data-read="true"],
+.email-row.read {
+  background-color: var(--bg-row-read);
+}
+
+.email-row[data-read="true"] .sender,
+.email-row.read .sender {
+  font-weight: 400;
+  color: var(--text-secondary);
+}
+
+.email-row[data-read="true"] .subject,
+.email-row.read .subject {
+  font-weight: 400;
+  color: var(--text-secondary);
+}
+
+.email-row[data-read="true"] .date,
+.email-row.read .date {
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+/* Subject & Content Column */
+.subject {
+  display: inline;
+  color: var(--text-main);
+  font-size: 13.5px;
+  vertical-align: middle;
+}
+
+/* Priority Tag (Badge) */
+.priority-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--danger-color);
+  background-color: var(--danger-light);
+  border: 1px solid var(--danger-border);
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  line-height: 1.4;
+  vertical-align: middle;
+}
+
+.priority-tag:empty {
+  display: none;
+}
+
+/* Body Preview */
+.body-preview {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  margin-top: 3px;
+  font-weight: 400;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 520px;
+}
+
+/* Delete Button */
+.delete-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  color: #ef4444;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: inherit;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.delete-btn:hover {
+  background-color: #fee2e2;
+  border-color: #fca5a5;
+  color: #b91c1c;
+}
+
+/* ==========================================================================
+   MODAL COMPOSE EMAIL (id="compose-modal")
+   ========================================================================== */
+#compose-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 16px;
+}
+
+.compose-modal-card {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 520px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-modal);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  animation: modalFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.compose-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 20px;
+  background-color: var(--bg-toolbar);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.compose-modal-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.modal-close-icon {
+  background: none;
+  border: none;
+  font-size: 20px;
+  line-height: 1;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  transition: color 0.15s, background-color 0.15s;
+}
+
+.modal-close-icon:hover {
+  color: var(--text-main);
+  background-color: #e2e8f0;
+}
+
+#compose-form {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 9px 12px;
+  font-size: 13.5px;
+  font-family: inherit;
+  color: var(--text-main);
+  background-color: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: var(--radius-md);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  margin-top: 6px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.btn-cancel {
+  padding: 8px 16px;
+  font-size: 13.5px;
+  font-weight: 500;
+  font-family: inherit;
+  border: 1px solid #d1d5db;
+  background-color: #ffffff;
+  color: var(--text-secondary);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.btn-cancel:hover {
+  background-color: var(--bg-bulk);
+}
+
+.btn-send {
+  padding: 8px 20px;
+  font-size: 13.5px;
+  font-weight: 600;
+  font-family: inherit;
+  border: none;
+  background-color: var(--primary-color);
+  color: #ffffff;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.btn-send:hover {
+  background-color: var(--primary-hover);
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (Media Queries)
+   ========================================================================== */
+@media (max-width: 768px) {
+  body {
+    padding: 12px 8px;
+  }
+
+  .app-container {
+    padding: 16px 12px;
+  }
+
+  .toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-wrapper {
+    max-width: 100%;
+  }
+
+  .toolbar-actions {
+    justify-content: space-between;
+  }
+
+  .body-preview {
+    max-width: 240px;
+  }
+}
